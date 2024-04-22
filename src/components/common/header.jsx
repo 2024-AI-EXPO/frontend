@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { Link, useLocation } from "react-router-dom";
+import { InquiryIcon } from "../InquiryIcon";
 
 const menuList = [
+  { name: "번역기", link: "" },
   { name: "수화 배우기", link: "learn" },
   { name: "설명서", link: "docs" },
-  { name: "건의함", link: "inquiry" },
   { name: "개발자", link: "devs" },
 ];
 
@@ -36,6 +37,7 @@ export const Header = () => {
               {menu.name}
             </Link>
           ))}
+          <InquiryIcon scroll={scroll} path={pathname} />
         </RightBox>
       </Container>
     </Wrapper>
