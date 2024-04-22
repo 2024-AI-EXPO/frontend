@@ -3,21 +3,21 @@ import styled from "styled-components";
 
 const Card = styled.div`
   width: 400px;
-  height: 600px;
+  min-height: 600px;
   background: #ffffff;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 `;
 
 const Name = styled.h2`
   color: #333;
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 400;
 `;
 
 const Email = styled.a`
@@ -32,21 +32,23 @@ const Email = styled.a`
 const Skills = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 `;
 
 const Skill = styled.span`
   background-color: #007bff;
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 200;
 `;
 
 const Introduction = styled.p`
-  color: #666;
   margin: 10px 0 0;
-  line-height: 1.5;
+  line-height: 1.4;
+  flex-grow: 1;
+  font-weight: 200;
 `;
 
 const DeveloperCard = ({ name, email, skills, introduction }) => {
@@ -59,7 +61,14 @@ const DeveloperCard = ({ name, email, skills, introduction }) => {
           <Skill key={index}>{skill}</Skill>
         ))}
       </Skills>
-      <Introduction>{introduction}</Introduction>
+      <Introduction>
+        {introduction.split("\n").map((val) => (
+          <>
+            {val}
+            <br />
+          </>
+        ))}
+      </Introduction>
     </Card>
   );
 };
