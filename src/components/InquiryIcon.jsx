@@ -1,8 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const InquiryIcon = ({ scroll, path }) => {
+  const link = useNavigate();
+
   return (
-    <Wrapper scroll={scroll} path={path} title="문의하기">
+    <Wrapper
+      scroll={scroll}
+      path={path}
+      title="문의하기"
+      onClick={() => {
+        link("/inquiry");
+      }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={20}
