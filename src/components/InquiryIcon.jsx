@@ -8,7 +8,7 @@ export const InquiryIcon = ({ scroll, path }) => {
     <Wrapper
       scroll={scroll}
       path={path}
-      title="문의하기"
+      title="건의 사항"
       onClick={() => {
         link("/inquiry");
       }}>
