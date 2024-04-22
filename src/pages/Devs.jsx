@@ -4,11 +4,11 @@ import DeveloperCard from "../components/DeveloperCard";
 
 const Container = styled.div`
   max-width: 1200px;
-  margin: 50px auto;
+  margin: 100px auto;
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 
   display: flex;
   justify-content: center;
