@@ -1,22 +1,45 @@
-import { styled } from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 const signLanguage = [
-  { imgLink: "", description: "" },
-  { imgLink: "", description: "" },
-  { imgLink: "", description: "" },
-  { imgLink: "", description: "" },
+  { imgLink: "/images/sign1.jpg", description: "안녕하세요" },
+  { imgLink: "/images/sign2.jpg", description: "감사합니다" },
+  { imgLink: "/images/sign3.jpg", description: "미안합니다" },
+  { imgLink: "/images/sign4.jpg", description: "사랑합니다" },
 ];
 
 export const Learn = () => {
+  const [filter, setFilter] = useState("");
+  const [filteredSignLanguage, setFilteredSignLanguage] =
+    useState(signLanguage);
+
+  useEffect(() => {
+    const result = signLanguage.filter((element) =>
+      element.description.includes(filter)
+    );
+    setFilteredSignLanguage(result);
+  }, [filter]);
+
   return (
     <Wrapper>
       <InputWrapper>
-        <Input placeholder="검색" />
-        <img src="/images/search.svg" />
+        <Input
+          placeholder="검색"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+        <img src="/images/search.svg" alt="검색 아이콘" />
       </InputWrapper>
       <LearnBoxWrapper>
-        {signLanguage.map((element, index) => {
-          return <LearnBox key={index}>{element.description}</LearnBox>;
+        {filteredSignLanguage.map((element, index) => {
+          return (
+            <LearnBox key={index}>
+              <ImageWrapper>
+                <Image src={element.imgLink} alt={`수화 이미지 ${index + 1}`} />
+              </ImageWrapper>
+              <Description>{element.description}</Description>
+            </LearnBox>
+          );
         })}
       </LearnBoxWrapper>
     </Wrapper>
@@ -33,19 +56,41 @@ const Wrapper = styled.div`
 `;
 
 const LearnBoxWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
   width: 100%;
   padding: 0 20px;
   max-width: 1280px;
-  flex-wrap: wrap;
 `;
 
 const LearnBox = styled.div`
   width: 250px;
-  height: 310px;
+  height: 360px;
   border: 1px solid #acacac;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+`;
+
+const ImageWrapper = styled.div`
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+`;
+
+const Description = styled.div`
+  margin-top: 10px;
+  font-size: 16px;
 `;
 
 const InputWrapper = styled.div`
@@ -56,13 +101,15 @@ const InputWrapper = styled.div`
     position: absolute;
     right: 14px;
     top: 10px;
+    cursor: pointer;
   }
 `;
 
 const Input = styled.input`
-  width: 640px;
+  width: 100%;
   height: 40px;
-  border-bottom: 1px solid #acacac;
+  border: 1px solid #acacac;
+  border-radius: 4px;
   font-size: 16px;
   padding: 0 14px;
   &::placeholder {
