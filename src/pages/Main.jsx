@@ -150,7 +150,8 @@ const ContainerWrapper = styled.div`
 
 const Container = styled.div`
   display: flex;
-  width: calc(50% - 50px);
+  max-width: 1140px;
+  width: 98%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 60px;
