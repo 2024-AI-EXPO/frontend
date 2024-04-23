@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Main = () => {
   return (
@@ -15,7 +16,7 @@ export const Main = () => {
               수화 학습과 수화 통역은 <span>symbol</span>에서
             </div>
             <ButtonWrapper>
-              <BannerButton>한글 수화 번역기</BannerButton>
+              <BannerButton to={'https://youtube.com'}>한글 수화 번역기</BannerButton>
               <BannerButton>영어 수화 번역기</BannerButton>
             </ButtonWrapper>
           </BannerTextWrapper>
@@ -119,7 +120,7 @@ const BannerTextWrapper = styled.div`
   }
 `;
 
-const BannerButton = styled.div`
+const BannerButton = styled(Link)`
   width: 136px;
   height: 48px;
   font-size: 14px;

@@ -21,7 +21,7 @@ export const Devs = () => {
       name: "김개발",
       email: "devkim@example.com",
       skills: ["React", "Node.js", "MongoDB"],
-      introduction: "풀스택 개발자 김개발입니다.",
+      introduction: "풀스택 개발자 김개발입니다.\n\n\nasdsaf",
     },
     {
       name: "이코더",
