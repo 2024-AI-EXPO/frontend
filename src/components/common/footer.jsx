@@ -14,7 +14,7 @@ const FooterContainer = styled.footer`
 export const Footer = () => {
   return (
     <FooterContainer>
-      © {new Date().getFullYear()} 나의 웹사이트. 모든 권리 보유.
+      © {new Date().getFullYear()} 대덕소프트웨어 마이스터고
     </FooterContainer>
   );
 };

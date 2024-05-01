@@ -13,11 +13,11 @@ export const Main = () => {
               <div>함께 미래를 꿈꿀 수 있도록</div>
             </div>
             <div>
-              수화 학습과 수화 통역은 <span>symbol</span>에서
+              수화 학습과 수화 통역은 <span>Symbols</span>에서
             </div>
             <ButtonWrapper>
-              <BannerButton to={'https://youtube.com'}>한글 수화 번역기</BannerButton>
-              <BannerButton>영어 수화 번역기</BannerButton>
+              <BannerButton to={'http://0.0.0.0:4292/AI'}>한글 수화 번역기</BannerButton>
+              <BannerButton to={'http://0.0.0.0:5955/AI'} >영어 수화 번역기</BannerButton>
             </ButtonWrapper>
           </BannerTextWrapper>
           <img

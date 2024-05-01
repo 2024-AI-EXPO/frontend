@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const signLanguage = [
-  { imgLink: "/images/sign1.jpg", description: "안녕하세요" },
+  { imgLink: "/Users/yabbi/Desktop/GitHub/frontend/수어 이미지/안녕하세요.png", description: "안녕하세요" },
   { imgLink: "/images/sign2.jpg", description: "감사합니다" },
   { imgLink: "/images/sign3.jpg", description: "미안합니다" },
   { imgLink: "/images/sign4.jpg", description: "사랑합니다" },

@@ -30,7 +30,7 @@ export const Header = () => {
   return (
     <Wrapper scroll={scroll} path={pathname}>
       <Container>
-        <LeftBox to={"/"}>Symbol</LeftBox>
+        <LeftBox to={"/"}>Symbols</LeftBox>
         <RightBox scroll={scroll} path={pathname}>
           {menuList.map((menu, index) => (
             <Link to={`/${menu.link}`} key={index}>
