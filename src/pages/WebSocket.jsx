@@ -16,8 +16,8 @@ const HiddenVideo = styled.video`
 `;
 
 const StreamDisplay = styled.img`
-  width: 640px;
-  height: 480px;
+  width: 960px;
+  height: 720px;
   object-fit: contain;
   /* transform: scaleX(-1); */
 `;
@@ -51,7 +51,7 @@ export default function WebSocketVideoStream() {
   const setupCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480 },
+        video: { width: 960, height: 720 },
       });
 
       if (localVideoRef.current) {
@@ -101,12 +101,12 @@ export default function WebSocketVideoStream() {
   const sendFrame = () => {
     if (wsRef.current?.readyState === WebSocket.OPEN && localVideoRef.current) {
       const canvas = document.createElement('canvas');
-      canvas.width = 320;
-      canvas.height = 240;
+      canvas.width = 960;
+      canvas.height = 720;
       const ctx = canvas.getContext('2d');
 
       if (ctx) {
-        ctx.drawImage(localVideoRef.current, 0, 0, 320, 240);
+        ctx.drawImage(localVideoRef.current, 0, 0, 960, 720);
         canvas.toBlob(
           (blob) => {
             if (blob && wsRef.current) {
