@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 const fadeIn = keyframes`
   100% {
@@ -25,6 +25,19 @@ const morph = keyframes`
   67% {
     border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
     transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
+  }
+`;
+
+const expand = keyframes`
+  0% {
+    width: 300px;
+    height: 288px;
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  }
+  100% {
+    width: 200vw;
+    height: 200vh;
+    border-radius: 0;
   }
 `;
 
@@ -85,7 +98,6 @@ const ReadDocs = styled.h3`
   color: #505050;
   font-weight: 100;
   bottom: 20px;
-  /* font-size: clamp(0.8rem, 1.6vw, 1.2rem); */
   font-size: 16px;
   max-width: 140px;
   text-align: center;
@@ -101,10 +113,16 @@ const Gooey = styled.div`
   width: 300px;
   height: 288px;
   animation: ${morph} 3s linear infinite;
-  position: relative;
+  position: ${(props) => (props.isExpanding ? 'absolute' : 'relative')};
   outline: 1px solid transparent;
   will-change: border-radius;
   z-index: 2;
+
+  ${(props) =>
+    props.isExpanding &&
+    css`
+      animation: ${expand} 0.5s ease-out forwards;
+    `}
 
   &:before,
   &:after {
@@ -140,31 +158,44 @@ const Gooey = styled.div`
     text-align: center;
     color: white;
     font-size: 24px;
+    opacity: ${(props) => (props.isExpanding ? '0' : '1')};
   }
+
+  ${(props) =>
+    props.isExpanding &&
+    css`
+      &:before,
+      &:after {
+        animation: none;
+        border-radius: 0;
+      }
+    `}
 `;
 
 export default function Main() {
   const navigate = useNavigate();
+  const [isExpanding, setIsExpanding] = useState(false);
+
+  const handleConnect = () => {
+    setIsExpanding(true);
+    setTimeout(() => {
+      navigate('/camera');
+    }, 500); // Wait for the animation to complete before navigating
+  };
 
   return (
-    <>
-      <AppContainer>
-        <Blur />
-        <Blur />
-        <Blur />
-        <Title>SYMBOLS</Title>
-        <Gooey
-          onClick={() => {
-            navigate('/camera');
-          }}
-        />
-        <ReadDocs
-          onClick={() => {
-            navigate('/docs');
-          }}>
-          Read the docs
-        </ReadDocs>
-      </AppContainer>
-    </>
+    <AppContainer>
+      <Blur />
+      <Blur />
+      <Blur />
+      <Title>SYMBOLS</Title>
+      <Gooey isExpanding={isExpanding} onClick={handleConnect} />
+      <ReadDocs
+        onClick={() => {
+          navigate('/docs');
+        }}>
+        Read the docs
+      </ReadDocs>
+    </AppContainer>
   );
 }
