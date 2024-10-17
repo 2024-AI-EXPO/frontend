@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
@@ -38,6 +39,7 @@ const AppContainer = styled.div`
   position: relative;
   overflow: hidden;
   animation: ${fadeIn} 500ms reverse;
+  padding-bottom: 140px;
 `;
 
 const Blur = styled.div`
@@ -77,6 +79,19 @@ const Title = styled.h1`
   text-align: center;
   z-index: 2;
   position: relative;
+`;
+
+const ReadDocs = styled.h3`
+  color: #505050;
+  font-weight: 100;
+  bottom: 20px;
+  font-size: clamp(0.8rem, 1.6vw, 1.2rem);
+  max-width: 140px;
+  text-align: center;
+  z-index: 2;
+  position: fixed;
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 const Gooey = styled.div`
@@ -128,6 +143,8 @@ const Gooey = styled.div`
 `;
 
 export default function Main() {
+  const navigate = useNavigate();
+
   return (
     <>
       <AppContainer>
@@ -135,7 +152,17 @@ export default function Main() {
         <Blur />
         <Blur />
         <Title>SYMBOLS</Title>
-        <Gooey />
+        <Gooey
+          onClick={() => {
+            navigate('/camera');
+          }}
+        />
+        <ReadDocs
+          onClick={() => {
+            navigate('/docs');
+          }}>
+          Read the docs
+        </ReadDocs>
       </AppContainer>
     </>
   );
