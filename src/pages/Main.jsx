@@ -85,7 +85,8 @@ const ReadDocs = styled.h3`
   color: #505050;
   font-weight: 100;
   bottom: 20px;
-  font-size: clamp(0.8rem, 1.6vw, 1.2rem);
+  /* font-size: clamp(0.8rem, 1.6vw, 1.2rem); */
+  font-size: 16px;
   max-width: 140px;
   text-align: center;
   z-index: 2;
