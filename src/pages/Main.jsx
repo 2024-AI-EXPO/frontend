@@ -36,8 +36,8 @@ const expand = keyframes`
   }
   100% {
     width: 200vw;
-    height: 200vh;
-    border-radius: 0;
+      height: 200vh;
+      border-radius: 0;
   }
 `;
 
