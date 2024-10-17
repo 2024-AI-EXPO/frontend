@@ -27,6 +27,58 @@ const morph = keyframes`
   }
 `;
 
+const AppContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  animation: ${fadeIn} 500ms reverse;
+`;
+
+const Blur = styled.div`
+  position: absolute;
+  z-index: 1;
+  border-radius: 900px;
+  filter: blur(var(--blur-amount));
+  background: var(--color);
+
+  &:nth-child(1) {
+    height: var(--blur-1-size);
+    width: calc(var(--blur-1-size) * 1.1);
+  }
+
+  &:nth-child(2) {
+    filter: blur(var(--blur-amount)) hue-rotate(135deg) brightness(1.3);
+    height: var(--blur-2-size);
+    width: calc(var(--blur-2-size) * 0.75);
+    top: 20vh;
+    right: 20vh;
+  }
+
+  &:nth-child(3) {
+    filter: blur(var(--blur-amount)) hue-rotate(-135deg);
+    height: var(--blur-3-size);
+    width: calc(var(--blur-3-size) * 2);
+    bottom: 20vh;
+    left: 20vw;
+  }
+`;
+
+const Title = styled.h1`
+  font-weight: 900;
+  margin: 2rem 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  max-width: 800px;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+`;
+
 const Gooey = styled.div`
   background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
   border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
@@ -36,6 +88,7 @@ const Gooey = styled.div`
   position: relative;
   outline: 1px solid transparent;
   will-change: border-radius;
+  z-index: 2;
 
   &:before,
   &:after {
@@ -62,33 +115,28 @@ const Gooey = styled.div`
   }
 
   &:after {
+    cursor: pointer;
     animation: ${morph} 3s linear infinite;
     animation-delay: 400ms;
     opacity: 0.89;
     content: 'connect';
-    line-height: 120px;
-    text-indent: -21px;
+    line-height: 288px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
   }
-`;
-
-const AppContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: #0d0722;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  color: #fff;
-  font-family: 'Exo 2', sans-serif;
-  font-size: 24px;
-  animation: ${fadeIn} 500ms reverse;
 `;
 
 export default function Main() {
   return (
-    <AppContainer>
-      <Gooey />
-    </AppContainer>
+    <>
+      <AppContainer>
+        <Blur />
+        <Blur />
+        <Blur />
+        <Title>SYMBOLS</Title>
+        <Gooey />
+      </AppContainer>
+    </>
   );
 }

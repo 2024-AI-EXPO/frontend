@@ -71,4 +71,18 @@ export const GlobalStyle = createGlobalStyle`
     font-weight:100;
     color:black
   }
+
+  :root {
+    --color: pink;
+    --blur-1-size: clamp(400px, 60vw, 60vw);
+    --blur-2-size: clamp(300px, 40vw, 40vw);
+    --blur-3-size: clamp(100px, 10vw, 10vw);
+    --blur-amount: clamp(40px, 5vw, 90px);
+  }
+
+  body {
+    font-family: 'Termina', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
 `;
