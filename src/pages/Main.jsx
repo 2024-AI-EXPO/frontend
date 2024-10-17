@@ -1,184 +1,94 @@
-import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
 
-export const Main = () => {
+const fadeIn = keyframes`
+  100% {
+    transform: scale(1.03);
+    opacity: 0;
+  }
+`;
+
+const morph = keyframes`
+  0%, 100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+  }
+  34% {
+    border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+    transform: translate3d(0, 5px, 0) rotateZ(0.01deg);
+  }
+  50% {
+    opacity: .89;
+    transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+  }
+  67% {
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+    transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
+  }
+`;
+
+const Gooey = styled.div`
+  background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  width: 300px;
+  height: 288px;
+  animation: ${morph} 3s linear infinite;
+  position: relative;
+  outline: 1px solid transparent;
+  will-change: border-radius;
+
+  &:before,
+  &:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
+    animation-delay: 200ms;
+    background-image: linear-gradient(
+      120deg,
+      rgba(0, 67, 255, 0.55) 0%,
+      rgba(0, 103, 255, 0.89) 100%
+    );
+  }
+
+  &:before {
+    animation: ${morph} 1.5s linear infinite;
+    opacity: 0.21;
+  }
+
+  &:after {
+    animation: ${morph} 3s linear infinite;
+    animation-delay: 400ms;
+    opacity: 0.89;
+    content: 'connect';
+    line-height: 120px;
+    text-indent: -21px;
+  }
+`;
+
+const AppContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: #0d0722;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 24px;
+  animation: ${fadeIn} 500ms reverse;
+`;
+
+export default function Main() {
   return (
-    <div>
-      <Banner>
-        <BannerInnerWrapper>
-          <BannerTextWrapper>
-            <div>
-              <div>모든 순간,</div>
-              <div>소통의 장벽을 넘어</div>
-              <div>함께 미래를 꿈꿀 수 있도록</div>
-            </div>
-            <div>
-              수화 학습과 수화 통역은 <span>Symbols</span>에서
-            </div>
-            <ButtonWrapper>
-              <BannerButton to={'http://0.0.0.0:4292/AI'}>한글 수화 번역기</BannerButton>
-              <BannerButton to={'http://0.0.0.0:5955/AI'} >영어 수화 번역기</BannerButton>
-            </ButtonWrapper>
-          </BannerTextWrapper>
-          <img
-            src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Raising%20Hands.png"
-            alt="Raising Hands"
-            width="400"
-            height="400"
-          />
-        </BannerInnerWrapper>
-      </Banner>
-      <ContainerWrapper>
-        <Container>
-          <div>
-            <div>수화를 배워보세요</div>
-            <div>다양한 수화 교육 콘텐츠를 통해 새로운 언어를 배워보세요.</div>
-          </div>
-          <Image
-            src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Flashlight.png"
-            alt="Flashlight"
-          />
-        </Container>
-        <Container>
-          <div>
-            <div>건의할 사항이 있나요?</div>
-            <div>여러분의 소중한 의견을 들려주세요. 함께 개선해 나갑시다.</div>
-          </div>
-          <Image
-            src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Loudspeaker.png"
-            alt="Loudspeaker"
-          />
-        </Container>
-        <Container>
-          <div>
-            <div>사용법을 알려드릴게요</div>
-            <div>이 앱의 사용 방법을 단계별로 안내해 드립니다.</div>
-          </div>
-          <Image
-            src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Page%20with%20Curl.png"
-            alt="Page with Curl"
-          />
-        </Container>
-        <Container>
-          <div>
-            <div>개발자를 소개할게요</div>
-            <div>이 앱을 만든 개발자들의 이야기를 들어보세요.</div>
-          </div>
-          <Image
-            src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Desktop%20Computer.png"
-            alt="Desktop Computer"
-          />
-        </Container>
-      </ContainerWrapper>
-    </div>
+    <AppContainer>
+      <Gooey />
+    </AppContainer>
   );
-};
-
-const Banner = styled.div`
-  width: 100vw;
-  height: 800px;
-  margin-top: -60px;
-  background-color: #191f28;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const BannerInnerWrapper = styled.div`
-  width: 1038px;
-  height: 400px;
-  display: flex;
-  justify-content: space-between;
-  > img {
-    transform: scaleX(-1);
-  }
-`;
-
-const BannerTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  > div:nth-child(1) {
-    > div {
-      font-size: 46px;
-      font-weight: 700;
-      color: white;
-    }
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  > div:nth-child(2) {
-    font-size: 16px;
-    font-weight: 700;
-    color: #b0b8c1;
-    > span {
-      font-size: 16px;
-      font-weight: 700;
-      color: #458cdc;
-    }
-  }
-`;
-
-const BannerButton = styled(Link)`
-  width: 136px;
-  height: 48px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 8px;
-  background-color: #3182f6;
-  color: #f9fafb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 20px;
-  height: 48px;
-`;
-
-const ContainerWrapper = styled.div`
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 0;
-  gap: 100px;
-`;
-
-const Container = styled.div`
-  display: flex;
-  max-width: 1140px;
-  width: 98%;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 60px;
-  &:nth-child(odd) {
-    flex-direction: row;
-  }
-  &:nth-child(even) {
-    flex-direction: row-reverse;
-  }
-  > div {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    > div:nth-child(1) {
-      font-size: 36px;
-      font-weight: 700;
-    }
-    > div:nth-child(2) {
-      font-size: 20px;
-      font-weight: 200;
-      word-break: keep-all;
-    }
-  }
-`;
-
-const Image = styled.img`
-  width: 200px;
-  height: 200px;
-`;
+}
