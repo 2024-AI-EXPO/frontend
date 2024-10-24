@@ -1,5 +1,5 @@
 config:
-  name: symbols-fe
+  name: frontend
   service_type: fe
   port: 3000
   domain:
