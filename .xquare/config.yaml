@@ -3,5 +3,5 @@ config:
   service_type: fe
   port: 3000
   domain:
-    prod: symbols.xquare.app
-    stag: symbols-stag.xquare.app
+    prod: symbols-client.xquare.app
+    stag: symbols-client-stag.xquare.app
