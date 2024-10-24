@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 
 export const App = () => {
   return (
-    <Wrapper>
+    <Wrapper> 
       <GlobalStyle />
       <Router />
     </Wrapper>
