@@ -194,7 +194,7 @@ export default function Main() {
         onClick={() => {
           navigate('/docs');
         }}>
-        Read the docs
+        Read the manual
       </ReadDocs>
     </AppContainer>
   );
