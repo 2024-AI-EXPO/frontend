@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import WebSocketVideoStream from '@/pages/WebSocket';
+import WebSocketVideoStream from '@/pages/webSocket';
 import Main from '@/pages/main';
 
 export const Router = () => {
