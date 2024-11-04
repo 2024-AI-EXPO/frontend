@@ -192,7 +192,7 @@ export default function Main() {
       <Gooey isExpanding={isExpanding} onClick={handleConnect} />
       <ReadDocs
         onClick={() => {
-          navigate('/docs');
+          navigate('/manual');
         }}>
         Read the manual
       </ReadDocs>
