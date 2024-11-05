@@ -8,11 +8,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(
-    120deg,
-    rgba(0, 67, 255, 0.55) 0%,
-    rgba(0, 103, 255, 0.89) 100%
-  );
+  background-color: #121212;
 `;
 
 const HiddenVideo = styled.video`

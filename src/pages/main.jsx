@@ -3,10 +3,29 @@ import { useNavigate } from 'react-router-dom';
 import styled, { keyframes, css } from 'styled-components';
 
 const fadeIn = keyframes`
-  100% {
-    transform: scale(1.03);
+  from {
     opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+`;
+
+const FadeInDiv = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #121212;
+  opacity: 0; // 초기 투명도
+  animation: ${(props) =>
+    props.visible
+      ? css`
+          ${fadeIn} 0.5s forwards
+        `
+      : 'none'};
 `;
 
 const morph = keyframes`
@@ -84,14 +103,32 @@ const Blur = styled.div`
   }
 `;
 
+const TitleContainer = styled.div`
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Title = styled.h1`
   font-weight: 900;
-  margin: 2rem 0;
+  margin-top: 2rem 0;
   font-size: clamp(2rem, 4vw, 3rem);
   max-width: 800px;
   text-align: center;
   z-index: 2;
   position: relative;
+`;
+
+const SubTitle = styled.div`
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: #707070;
+  position: relative;
+  z-index: 2;
+  margin-top: 4px;
+  margin-bottom: 2rem;
 `;
 
 const ReadDocs = styled.h3`
@@ -185,11 +222,18 @@ export default function Main() {
 
   return (
     <AppContainer>
+      {isExpanding && <FadeInDiv visible={isExpanding} />}
       <Blur />
       <Blur />
       <Blur />
-      <Title>SYMBOLS</Title>
-      <Gooey isExpanding={isExpanding} onClick={handleConnect} />
+      <TitleContainer>
+        <Title>SYMBOLS</Title>
+        <SubTitle>
+          - 소통의 장벽을 넘어 모두 함께 미래를 꿈 꿀 수 있도록 -
+        </SubTitle>
+      </TitleContainer>
+
+      <Gooey onClick={handleConnect} />
       <ReadDocs
         onClick={() => {
           navigate('/manual');
